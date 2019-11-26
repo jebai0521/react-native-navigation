@@ -91,7 +91,7 @@ public class ComponentLayout extends CoordinatorLayout implements ReactComponent
     }
 
     @Override
-    public void onPress(String buttonId) {
+    public void onPress(String buttonId, Bool bubbling) {
         reactView.sendOnNavigationButtonPressed(buttonId);
     }
 

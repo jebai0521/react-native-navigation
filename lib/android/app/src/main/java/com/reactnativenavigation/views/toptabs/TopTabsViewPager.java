@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.reactnativenavigation.parse.Options;
+import com.reactnativenavigation.parse.params.Bool;
 import com.reactnativenavigation.viewcontrollers.IReactView;
 import com.reactnativenavigation.viewcontrollers.TitleBarButtonController;
 import com.reactnativenavigation.viewcontrollers.ViewController;
@@ -55,7 +56,7 @@ public class TopTabsViewPager extends ViewPager implements Component, TitleBarBu
     }
 
     @Override
-    public void onPress(String buttonId) {
+    public void onPress(String buttonId, Bool bubbling) {
         ((IReactView) tabs.get(getCurrentItem()).getView()).sendOnNavigationButtonPressed(buttonId);
     }
 

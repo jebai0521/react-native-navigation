@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.reactnativenavigation.parse.Options;
+import com.reactnativenavigation.parse.params.Bool;
 import com.reactnativenavigation.parse.params.Button;
 import com.reactnativenavigation.parse.params.Text;
 import com.reactnativenavigation.utils.ArrayUtils;
@@ -30,7 +31,7 @@ import java.util.List;
 
 public class TitleBarButtonController extends ViewController<TitleBarReactButtonView> implements MenuItem.OnMenuItemClickListener {
     public interface OnClickListener {
-        void onPress(String buttonId);
+        void onPress(String buttonId, Bool bubbling);
     }
 
     private final NavigationIconResolver navigationIconResolver;
@@ -97,7 +98,7 @@ public class TitleBarButtonController extends ViewController<TitleBarReactButton
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        onPressListener.onPress(button.id);
+        onPressListener.onPress(button.id, new Bool(false));
         return true;
     }
 
@@ -105,7 +106,7 @@ public class TitleBarButtonController extends ViewController<TitleBarReactButton
         Integer direction = getActivity().getWindow().getDecorView().getLayoutDirection();
         navigationIconResolver.resolve(button, direction, icon -> {
             setIconColor(icon);
-            toolbar.setNavigationOnClickListener(view -> onPressListener.onPress(button.id));
+            toolbar.setNavigationOnClickListener(view -> onPressListener.onPress(button.id, button.bubbling));
             toolbar.setNavigationIcon(icon);
             setLeftButtonTestId(toolbar);
         });

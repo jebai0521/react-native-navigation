@@ -24,6 +24,7 @@ public class BackButton extends Button {
         result.color = ColorParser.parse(json, "color");
         result.disabledColor = ColorParser.parse(json, "disabledColor");
         result.testId = TextParser.parse(json, "testID");
+        result.bubbling = BoolParser.parse(json, "bubbling");
 
         return result;
     }
@@ -48,6 +49,7 @@ public class BackButton extends Button {
         if (other.disableIconTint.hasValue()) disableIconTint = other.disableIconTint;
         if (other.enabled.hasValue()) enabled = other.enabled;
         if (other.testId.hasValue()) testId = other.testId;
+        if (other.bubbling.hasValue()) bubbling = other.bubbling;
     }
 
     void mergeWithDefault(final BackButton defaultOptions) {
@@ -58,6 +60,7 @@ public class BackButton extends Button {
         if (!disabledColor.hasValue()) disabledColor = defaultOptions.disabledColor;
         if (!disableIconTint.hasValue()) disableIconTint = defaultOptions.disableIconTint;
         if (!enabled.hasValue()) enabled = defaultOptions.enabled;
+        if (!bubbling.hasValue()) bubbling = defaultOptions.bubbling;
         if (!testId.hasValue()) testId = defaultOptions.testId;
     }
 

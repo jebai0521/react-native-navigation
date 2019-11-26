@@ -25,6 +25,7 @@ public class Button {
     public Text text = new NullText();
     public Bool enabled = new NullBool();
     public Bool disableIconTint = new NullBool();
+    public Bool bubbling = new NullBool();
     public Number showAsAction = new NullNumber();
     public Colour color = new NullColor();
     public Colour disabledColor = new NullColor();
@@ -65,6 +66,7 @@ public class Button {
         button.fontWeight = TextParser.parse(json, "fontWeight");
         button.testId = TextParser.parse(json, "testID");
         button.component = Component.parse(json.optJSONObject("component"));
+        button.bubbling = BoolParser.parse(json, "bubbling");
 
         if (json.has("icon")) {
             button.icon = TextParser.parse(json.optJSONObject("icon"), "uri");
@@ -146,6 +148,7 @@ public class Button {
         if (other.icon.hasValue()) icon = other.icon;
         if (other.id != null) id = other.id;
         if (other.instanceId != null) instanceId = other.instanceId;
+        if (other.bubbling != null) bubbling = other.bubbling;
     }
 
     public void mergeWithDefault(Button defaultOptions) {
@@ -161,5 +164,6 @@ public class Button {
         if (!component.hasValue()) component = defaultOptions.component;
         if (!showAsAction.hasValue()) showAsAction = defaultOptions.showAsAction;
         if (!icon.hasValue()) icon = defaultOptions.icon;
+        if (!bubbling.hasValue()) bubbling = defaultOptions.bubbling;
     }
 }

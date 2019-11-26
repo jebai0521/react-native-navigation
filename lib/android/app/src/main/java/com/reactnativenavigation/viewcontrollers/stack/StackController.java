@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.reactnativenavigation.anim.NavigationAnimator;
 import com.reactnativenavigation.parse.Options;
+import com.reactnativenavigation.parse.params.Bool;
 import com.reactnativenavigation.presentation.Presenter;
 import com.reactnativenavigation.presentation.StackPresenter;
 import com.reactnativenavigation.react.Constants;
@@ -360,8 +361,8 @@ public class StackController extends ParentController<StackLayout> {
         stackLayout.addView(child, 0, matchParentWithBehaviour(new StackBehaviour(this)));
     }
 
-    private void onNavigationButtonPressed(String buttonId) {
-        if (Constants.BACK_BUTTON_ID.equals(buttonId)) {
+    private void onNavigationButtonPressed(String buttonId, Bool bubbling) {
+        if (Constants.BACK_BUTTON_ID.equals(buttonId) && bubbling.isFalse()) {
             pop(Options.EMPTY, new CommandListenerAdapter());
         } else {
             sendOnNavigationButtonPressed(buttonId);
